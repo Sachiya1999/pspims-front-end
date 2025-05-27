@@ -1,0 +1,46 @@
+<div class="container mt-5">
+  <div class="row justify-content-center">
+    <div class="col-md-6">
+      <div class="card shadow-sm">
+        <div class="card-body">
+          <h3 class="card-title text-center mb-4">Signin</h3>
+          <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+            <div class="mb-3">
+              <label for="username" class="form-label">Username</label>
+              <input
+                type="text"
+                id="username"
+                class="form-control"
+                formControlName="username"
+                autocomplete="off"
+              />
+              <div *ngIf="submitted && loginForm.controls['username'].errors" class="text-danger">
+                <small *ngIf="loginForm.controls['username'].errors['required']">Username is required.</small>
+              </div>
+            </div>
+
+            <div class="mb-3">
+              <label for="password" class="form-label">Password</label>
+              <input
+                type="password"
+                id="password"
+                class="form-control"
+                formControlName="password"
+                autocomplete="current-password"
+              />
+              <div *ngIf="submitted && loginForm.controls['password'].errors" class="text-danger">
+                <small *ngIf="loginForm.controls['password'].errors['required']">Password is required.</small>
+              </div>
+            </div>
+
+            <button type="submit" class="btn btn-primary w-100">Signin</button>
+
+            <div *ngIf="loginError" class="alert alert-danger mt-3">
+              {{ loginError }}
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
