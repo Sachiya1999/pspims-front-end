@@ -1,0 +1,60 @@
+<nav aria-label="Agent list pagination top" *ngIf="totalPages > 1">
+  <ul class="pagination justify-content-center">
+    <li class="page-item" [class.disabled]="pageNumber === 0">
+      <a class="page-link" href="#" (click)="goToPage(pageNumber - 1); $event.preventDefault()">Previous</a>
+    </li>
+    <li 
+      class="page-item" 
+      *ngFor="let page of pages" 
+      [class.active]="page === pageNumber">
+      <a class="page-link" href="#" (click)="goToPage(page); $event.preventDefault()">{{ page + 1 }}</a>
+    </li>
+    <li class="page-item" [class.disabled]="pageNumber === totalPages - 1">
+      <a class="page-link" href="#" (click)="goToPage(pageNumber + 1); $event.preventDefault()">Next</a>
+    </li>
+  </ul>
+</nav>
+
+<div class="row">
+  <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3">
+    <div class="col g-3 mx-0 mb-2 mt-0" *ngFor="let user of agents">
+      <div class="card shadow-sm">
+        <div class="card-body text-center">
+          <h5 class="card-title mb-1">{{ user.fullName }}</h5>
+          <p><strong>Username:</strong> {{ user.username }}</p>
+          <p class="text-muted mb-2">{{ user.role }}</p>
+          <p class="mb-0"><strong>Email:</strong> {{ user.email }}</p>
+        </div>
+        <div class="card-footer bg-white">
+          <button class="btn btn-sm btn-outline-primary me-2" (click)="onView(user)">View</button>
+          <button class="btn btn-sm btn-outline-secondary" (click)="onEdit(user)">Edit</button>
+          <button class="btn btn-sm btn-outline-danger float-end" (click)="onDelete(user)">Delete</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<nav aria-label="Agent list pagination bottom" class="mt-3" *ngIf="totalPages > 1">
+  <ul class="pagination justify-content-center">
+    <li class="page-item" [class.disabled]="pageNumber === 0">
+      <a class="page-link" href="#" (click)="goToPage(pageNumber - 1); $event.preventDefault()">Previous</a>
+    </li>
+    <li 
+      class="page-item" 
+      *ngFor="let page of pages" 
+      [class.active]="page === pageNumber">
+      <a class="page-link" href="#" (click)="goToPage(page); $event.preventDefault()">{{ page + 1 }}</a>
+    </li>
+    <li class="page-item" [class.disabled]="pageNumber === totalPages - 1">
+      <a class="page-link" href="#" (click)="goToPage(pageNumber + 1); $event.preventDefault()">Next</a>
+    </li>
+  </ul>
+</nav>
+
+<app-modal
+  [visible]="showModal"
+  [title]="'Agent Details'"
+  [htmlContent]="selectedHtml"
+  (onClose)="closeModal()">
+</app-modal>

@@ -1,0 +1,26 @@
+<div class="container mt-4">
+  <!-- Tab Navigation -->
+  <ul class="nav nav-tabs">
+    <li class="nav-item">
+      <a
+        routerLink="list"
+        routerLinkActive="active"
+        class="nav-link"
+        [routerLinkActiveOptions]="{ exact: true }"
+        >List Ingredients</a
+      >
+    </li>
+    <li class="nav-item">
+      <a
+        routerLink="form"
+        routerLinkActive="active"
+        class="nav-link"
+        >Add/Edit Ingredient</a
+      >
+    </li>
+  </ul>
+
+  <div class="border border-top-0 p-4">
+    <router-outlet></router-outlet>
+  </div>
+</div>

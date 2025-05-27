@@ -1,0 +1,59 @@
+<nav aria-label="CopraSale list pagination top" *ngIf="totalPages > 1">
+  <ul class="pagination justify-content-center">
+    <li class="page-item" [class.disabled]="pageNumber === 0">
+      <a class="page-link" href="#" (click)="goToPage(pageNumber - 1); $event.preventDefault()">Previous</a>
+    </li>
+    <li
+      class="page-item"
+      *ngFor="let page of pages"
+      [class.active]="page === pageNumber">
+      <a class="page-link" href="#" (click)="goToPage(page); $event.preventDefault()">{{ page + 1 }}</a>
+    </li>
+    <li class="page-item" [class.disabled]="pageNumber === totalPages - 1">
+      <a class="page-link" href="#" (click)="goToPage(pageNumber + 1); $event.preventDefault()">Next</a>
+    </li>
+  </ul>
+</nav>
+
+<app-table
+  [headers]="[
+    'Copra Sale ID',
+    'Sale Quantity',
+    'Price per Quantity',
+    'Total Sale Amount',
+    'Sale Date',
+    'Customer ID',
+    'Shipping Plan ID',
+    'Payment Detail ID'
+  ]"
+  [keys]="[
+    'id',
+    'saleQuantity',
+    'pricePerQuantity',
+    'totalSaleAmount',
+    'saleDate',
+    'customer.id',
+    'shippingPlan.id',
+    'paymentDetails.id'
+  ]"
+  [data]="copraSales"
+  (edit)="onEdit($event)"
+  (delete)="onDelete($event)"
+></app-table>
+
+<nav aria-label="CopraSale list pagination top" class="mt-3" *ngIf="totalPages > 1">
+  <ul class="pagination justify-content-center">
+    <li class="page-item" [class.disabled]="pageNumber === 0">
+      <a class="page-link" href="#" (click)="goToPage(pageNumber - 1); $event.preventDefault()">Previous</a>
+    </li>
+    <li
+      class="page-item"
+      *ngFor="let page of pages"
+      [class.active]="page === pageNumber">
+      <a class="page-link" href="#" (click)="goToPage(page); $event.preventDefault()">{{ page + 1 }}</a>
+    </li>
+    <li class="page-item" [class.disabled]="pageNumber === totalPages - 1">
+      <a class="page-link" href="#" (click)="goToPage(pageNumber + 1); $event.preventDefault()">Next</a>
+    </li>
+  </ul>
+</nav>
